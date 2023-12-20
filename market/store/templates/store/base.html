@@ -1,5 +1,4 @@
 {% load static tailwind_tags %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% tailwind_css %}
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getCookie(name){
+            var cookieValue = null;
+            if(document.cookie && document.cookie !== ''){
+                var cookies = document.cookie.split(';');
+                for(var i =0;i<cookies.length;i++){
+                    var cookie = cookies[i].trim();
+                    if(cookie.substring(0, name.length+1) === (name + '=')){
+                        cookieValue = decodeURIComponent(cookie.substring(name.length+1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+    </script>
 </head>
 <body>
     <nav class="border-b border-gray-300">
@@ -52,6 +71,6 @@
 
 
 {% endblock %}
-
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 </body>
 </html>
