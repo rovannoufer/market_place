@@ -21,7 +21,8 @@
 
         
         <div class="quantity mt-6 flex items-center space-x-4 mb-3 ">
-            <a class="p-3 bg-gray-100">-</a> <span>{{ item.quantity }}</span><a class="p-3 bg-gray-100"  >+</a>
+            <a class="p-3 bg-gray-100 update-cart" data-product="{{item.product.id}}" data-action="remove">-</a> <span>{{ item.quantity }}</span>
+            <a class="p-3 bg-gray-100 update-cart" data-product="{{item.product.id}}" data-action="add" >+</a>
         </div>
 
         <hr>
