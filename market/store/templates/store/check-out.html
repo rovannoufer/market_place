@@ -70,31 +70,31 @@
         </a>
 
         {% for item in items %}
-   <div class="products w-full lg:w-3/4">
-       
-   
-    <a href="#" class="w-1/4">
-        <img class="hover:shadow-lg rounded-xl mt-3 " src="{{ item.product.image.url }}" width="100px"></img>
-    </a>
+            <div class="products w-full lg:w-3/4">
+                
+            
+                <a href="#" class="w-1/4">
+                    <img class="hover:shadow-lg rounded-xl mt-3 " src="{{ item.product.image.url }}" width="100px"></img>
+                </a>
 
-    <div class="w-3/4 pl-6">
-        <div class="flex justify-between">
-            <a href="#" class="text-lg"> {{ item.product.name }} </a>
+                <div class="w-3/4 pl-6">
+                    <div class="flex justify-between">
+                        <a href="#" class="text-lg"> {{ item.product.name }} </a>
 
-            <span class="mb-6 pt-1 text-gray-400">Rs : {{ item.get_total }}</span>
-        </div>
+                        <span class="mb-6 pt-1 text-gray-400">Rs : {{ item.get_total }}</span>
+                    </div>
 
-        
-        <div class="quantity mt-6 flex items-center space-x-4 mb-3 ">
-            <a class="p-3 bg-gray-100 update-cart" data-product="{{item.product.id}}" data-action="remove">-</a> 
-            <span>{{ item.quantity }}</span>
-            <a class="p-3 bg-gray-100 update-cart" data-product="{{item.product.id}}" data-action="add" >+</a>
-        </div>
+                    
+                    <div class="quantity mt-6 flex items-center space-x-4 mb-3 ">
+                        <a class="p-3 bg-gray-100 update-cart" data-product="{{item.product.id}}" data-action="remove">-</a> 
+                        <span>{{ item.quantity }}</span>
+                        <a class="p-3 bg-gray-100 update-cart" data-product="{{item.product.id}}" data-action="add" >+</a>
+                    </div>
 
-        <hr>
-   
-    </div>
-</div>
+                    <hr>
+            
+                </div>
+            </div>
 
    {% endfor %}
    <hr>
@@ -173,6 +173,9 @@
     .then((data) => {
         console.log("sucess:" , data);
         alert("Transaction completed");
+
+        cart = {}
+        document.cookie = 'cart='+ JSON.stringify(cart) + ";domain=;path=/"
         window.location.href = "{% url 'store' %}"
     })
    }
