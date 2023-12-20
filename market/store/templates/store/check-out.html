@@ -4,7 +4,7 @@
 <form id="form">
  
 <div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
-    <div class="products w-full lg:w-3/4 pr-6"> 
+    <div class="products w-full lg:w-2/4 pr-6"> 
         <a href="{% url 'cart' %}"> <h1 class="mb-5 text-3xl"> &#x2190;Back</h1> </a> 
         <h1 class="mb-5 text-3xl">Checkout</h1>
         <div class="w-full md:pr-6 mb-6 p-6 bg-gray-100 rounded-xl">
@@ -60,11 +60,42 @@
         </div>
     </div>
 
-    <div class="summary w-full lg:w-1/4 p-6 bg-gray-100 rounded-xl mt-3 lg:ml-auto"> 
+    <div class="summary w-full lg:w-2/4 p-6 bg-gray-100 rounded-xl mt-3 lg:ml-auto"> 
         <h2 class="uppercase text-lg mb-5">Summary</h2>
          
+
+        {% for item in items %}
+   <div class="products w-full lg:w-3/4">
+       
+    <a href="{% url 'store' %}" class="inline-block px-8 py-4 rounded-xl  text-black">
+        &#x2190;Continue shopping
+    </a>
+    <a href="#" class="w-1/4">
+        <img class="hover:shadow-lg rounded-xl" src="{{ item.product.image.url }}" width="100px"></img>
+    </a>
+
+    <div class="w-3/4 pl-6">
+        <div class="flex justify-between">
+            <a href="#" class="text-lg"> {{ item.product.name }} </a>
+
+            <span class="mb-6 pt-1 text-gray-400">Rs : {{ item.get_total }}</span>
+        </div>
+
+        
+        <div class="quantity mt-6 flex items-center space-x-4 mb-3 ">
+            <a class="p-3 bg-gray-100">-</a> <span>{{ item.quantity }}</span><a class="p-3 bg-gray-100"  >+</a>
+        </div>
+
+        <hr>
+   
+    </div>
+</div>
+
+   {% endfor %}
+   <hr>
         <div class="mb-6 flex justify-between">
-            <span class="font-semibold">Rs: Total price</span>
+            <span class="font-semibold">ITEMS : {{ order.get_cart_items }}</span>
+            <span class="font-semibold">Price : Rs: {{ order.get_cart_total }}</span>
         </div>
         <a href="{% url 'cart' %}"  class="inline-block px-8 py-4 mb-5 rounded-xl bg-black hover:bg-gray-700 text-white"> Back to cart </a>
         
