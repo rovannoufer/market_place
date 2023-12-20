@@ -8,6 +8,7 @@
         <a href="{% url 'cart' %}"> <h1 class="mb-5 text-3xl"> &#x2190;Back</h1> </a> 
         <h1 class="mb-5 text-3xl">Checkout</h1>
      <form id="form">
+        {% csrf_token %}
         <div class="w-full md:pr-6 mb-6 p-6 bg-gray-100 rounded-xl">
             <h2 class="mb-5 uppercase text-lg">contact information</h2>
             <div class="flex space-x-6">
@@ -117,6 +118,10 @@
 
 
     var form = document.getElementById('form')
+
+
+    csrftoken = form.getElementsByTagName("input")[0].value
+    console.log("Token:", form.getElementsByTagName("input")[0].value)
     form.addEventListener('submit', function(e){
         e.preventDefault()
         console.log('Form submitted')

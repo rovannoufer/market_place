@@ -8,7 +8,7 @@
              Welcome to the MARKET | PLACE </p>
     
         <p class="mb-10 text-white">
-             We can sell anything
+             You can buy everything
         </p>
         <a href="{% url 'store' %}" class="inline-block px-8 py-4 rounded-xl bg-white text-black hover:bg-gray-200">
            START SHOPPING
@@ -18,80 +18,27 @@
 </header>
 <div class="max-w-6xl mx-auto py-2 px-6 xl:px-0">
     <div class="products flex items-center flex-wrap">
-        
+        {% for product in products%}
         <div class="w-full md:w-1/3 xl:w-1/4 p-6 rounded-xl">
             <a href="#">
-                <img src="#" class="rounded-xl hover:shadow-lg">
+                <img src="{{ product.image.url }}" class="rounded-xl hover:shadow-lg">
             </a>
         
             <div class="pt-3 flex items-center justify-between">
-                <a href="#">productname</a>
+                <a href="#">{{ product.name }}</a>
         
-                <a href="#" 
-                   class="text-black-500 hover:text-gray-700">
+                <button data-product={{product.id}} data-action="add"
+                    class="text-black-500 hover:text-gray-700 update-cart">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
-                </a>
+                </button>
             </div>
         
-            <p class="pt-1 text-gray-400">Rs: 500 </p>
+            <p class="pt-1 text-gray-400">Rs: {{ product.price }}</p>
         </div>
+        {% endfor %}
        
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 rounded-xl">
-            <a href="#">
-                <img src="#" class="rounded-xl hover:shadow-lg">
-            </a>
-        
-            <div class="pt-3 flex items-center justify-between">
-                <a href="#">productname</a>
-        
-                <a href="#" 
-                   class="text-black-500 hover:text-gray-700 update-cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                </a>
-            </div>
-        
-            <p class="pt-1 text-gray-400">Rs: 500 </p>
-        </div>
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 rounded-xl">
-            <a href="#">
-                <img src="#" class="rounded-xl hover:shadow-lg">
-            </a>
-        
-            <div class="pt-3 flex items-center justify-between">
-                <a href="#">productname</a>
-        
-                <a href="#" 
-                   class="text-black-500 hover:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                </a>
-            </div>
-        
-            <p class="pt-1 text-gray-400">Rs: 500 </p>
-        </div>
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 rounded-xl">
-            <a href="#">
-                <img src="#" class="rounded-xl hover:shadow-lg">
-            </a>
-        
-            <div class="pt-3 flex items-center justify-between">
-                <a href="#">productname</a>
-        
-                <a href="#" 
-                   class="text-black-500 hover:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                </a>
-            </div>
-        
-            <p class="pt-1 text-gray-400">Rs: 500 </p>
-        </div>
     </div>
 </div>
 
