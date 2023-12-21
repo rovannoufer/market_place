@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 from django.http import JsonResponse
 import json
 import datetime
 from .utils import cookieCart, guestorder
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 
 def main(request):
     products = Product.objects.all()
@@ -11,6 +13,27 @@ def main(request):
     return render(request, 'store/main.html', context)
 
 
+def demo(request):
+    return render(request, 'store/demo.html')
+
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        try:
+            user = User.objects.get(username = username)
+        except:
+            print('User doesn\'t exist')
+
+        user = authenticate(request, username=username, password = password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('store')
+        else:
+            print("Username or password is wrong")
+        
+    return render(request, 'store/login.html')
 
 
 def store(request):
