@@ -6,6 +6,7 @@ import datetime
 from .utils import cookieCart, guestorder
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 def main(request):
     products = Product.objects.all()
@@ -13,9 +14,10 @@ def main(request):
     return render(request, 'store/main.html', context)
 
 
-
-
 def login_user(request):
+
+    if request.user.is_authenticated:
+        return redirect('main')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -28,7 +30,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return redirect('store')
+            return redirect('main')
         else:
             print("Username or password is wrong")
         

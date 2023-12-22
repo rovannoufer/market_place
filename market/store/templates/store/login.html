@@ -3,11 +3,28 @@
 
 {% block content %}
 
-<form action="{% url 'login' %}" method="post">
-   {% csrf_token %}
-   <input type="text" name="username" placeholder="Username">
-   <input type="password" name="password" placeholder="Enter password">
-   <input type="submit" value="Login">
-</form>
+<div class="max-w-lg mx-auto flex flex-wrap p-6">
+   <div class="w-full bg-gray-100 p-6 rounded-xl">
+    <h1 class="mb-6 text-2xl"> LOGIN </h1>
+    <form action="{% url 'login' %}" method="post" class="space-y-3">
+       {% csrf_token %}
+       <div>
+          <input type="text" name="username" placeholder="Username" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
+       </div>
+       <div>
+          <input type="password" name="password" placeholder="Enter password" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
+       </div>
+       <div>
+          <button class="py-4 px-6 rounded-xl text-white bg-black bg:hover-gray-100">  <input type="submit" value="Login"> </button>
+       </div>
+       
+      
+    </form>
+    
+   </div>
+ </div>
+
+
+
 
 {% endblock %}
